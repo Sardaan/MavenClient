@@ -11,7 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 class Client {
-    
+
+    private static String login;
+    private static String password;
+    private static String mail;
     private final int PORT;
     private final String ADDR;
     private SocketChannel socketChannel;
@@ -22,7 +25,30 @@ class Client {
 
     }
 
-    
+    public static String getPassword() {
+        return password;
+    }
+
+    public static String getLogin() {
+        return login;
+    }
+
+    public static String getMail() {
+        return mail;
+    }
+
+    public static void setPassword(String password) {
+        Client.password = password;
+    }
+
+    public static void setLogin(String login) {
+        Client.login = login;
+    }
+
+    public static void setMail(String mail) {
+        Client.mail = mail;
+    }
+
     String communicate(Command command){
 
         try{

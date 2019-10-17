@@ -6,15 +6,12 @@ import collection.JSONreader;
 
 class RequestHandler {
 
-    private static String login;
-    private static String password;
-
     static Command getCommand(String request) {
         Command command = new Command();
         if (request != null) {
             if(request.equals("logout")){
-                login=null;
-                password=null;//awtrodaalq
+                Client.setLogin("");
+                Client.setPassword("");//awtrodaalq
             }
             
             String[] commandParts = request.split(" ", 2);
@@ -33,23 +30,27 @@ class RequestHandler {
             else if (commandName.equals("register")){
                 
                 System.out.println("login: ");
-                login = ClientLauncher.readConsole();
+                Client.setLogin(ClientLauncher.readConsole());
                 System.out.println("mail: ");
-                String mail = request+" "+ ClientLauncher.readConsole().trim();
+                Client.setMail(ClientLauncher.readConsole());
                 
-                command.setMail(mail);
+                command.setMail(Client.getMail());
                 
             }
             else if (commandName.equals("login")){
                 System.out.println("login: ");
-                login = ClientLauncher.readConsole().trim();
+                Client.setLogin(ClientLauncher.readConsole());
                 System.out.println("password: ");
-                password = ClientLauncher.readConsole();
+                Client.setPassword(ClientLauncher.readConsole());
             }
 
-            command.setLogin(login);
-            command.setPassword(password);
+            command.setLogin(Client.getLogin());
+            command.setPassword(Client.getPassword());
         }
         return command;
     }
 }
+
+//todo show if empty
+
+//todo if login, mail are null
